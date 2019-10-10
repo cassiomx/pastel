@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ClientRequest;
 use App\Repositories\Interfaces\ClientInterfaceRepository;
 
 class ClientController extends Controller
@@ -31,9 +32,11 @@ class ClientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ClientRequest $request)
     {
         //
+        $registro = $this->repository->store($request->all());
+        return response()->json($registro);
     }
 
     /**
@@ -45,18 +48,13 @@ class ClientController extends Controller
     public function show($id)
     {
         //
+        if(!$this->repository->findById($id))
+        {
+            return response()->json(['error'=>'client_not_found'],500);
+        }
+        return $this->repository->findById($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -65,9 +63,18 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ClientRequest $request, $id)
     {
         //
+        if(!$this->repository->findById($id))
+        {
+            return response()->json(['error'=>'client_not_found'],500);
+        }
+
+        if(!$update = $this->repository->update($id,$request->all())){
+            return response()->json(['error'=>'Erro ao Atualizar Cliente'],500);
+        }
+        return response()->json(['result'=>$update]);
     }
 
     /**
@@ -79,5 +86,13 @@ class ClientController extends Controller
     public function destroy($id)
     {
         //
+        if(!$this->repository->findById($id))
+        {
+            return response()->json(['error'=>'client_not_found'],500);
+        }
+        if(!$delete = $this->repository->delete($id)){
+            return response()->json(['error'=>'error_delete_client'],500);
+        }
+        return response()->json(['result'=>$delete]);
     }
 }

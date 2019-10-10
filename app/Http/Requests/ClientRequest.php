@@ -13,7 +13,7 @@ class ClientRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,15 @@ class ClientRequest extends FormRequest
      */
     public function rules()
     {
+        $id = $this->segment('3');
+
         return [
-            //
+            'name'      => "required|",
+            'email'       => "required|unique:clients,email,{$id},id",
+            'phone'     => "required|max:20",
+            'address'     => "required|max:191",
+            'neighborhood'     => "required|max:191",
+            'zipecode'     => "required|max:191",
         ];
     }
 }

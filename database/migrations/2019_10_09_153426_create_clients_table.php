@@ -24,6 +24,7 @@ class CreateClientsTable extends Migration
             $table->string('neighborhood');
             $table->string('zipecode',10);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
