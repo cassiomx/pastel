@@ -15,10 +15,11 @@ class CreatePastriesTable extends Migration
     {
         Schema::create('pastries', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->string('name')->unique();
             $table->double('price',10,2);
             $table->string('photo');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

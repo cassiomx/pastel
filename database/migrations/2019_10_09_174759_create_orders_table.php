@@ -14,11 +14,12 @@ class CreateOrdersTable extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->integer('client_id');
-            $table->integer('pastry_id');
+            $table->bigIncrements('id');
+            $table->bigInteger('client_id');
+            $table->bigInteger('pastry_id');
             $table->index('client_id','client_idx'); //*cria index no campo  client_id*//
             $table->index('pastry_id','pastry_idx'); //*cria index no campo  pastry_id*//
-            $table->primary(['client_id', 'pastry_id']);
+            $table->primary('id');
             $table->timestamps();
         });
     }

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ClientRequest extends FormRequest
+class PastryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,12 +26,9 @@ class ClientRequest extends FormRequest
         $id = $this->segment('3');
 
         return [
-            'name'      => "required|max:191",
-            'email'       => "required|unique:clients,email,{$id},id",
-            'phone'     => "required|max:20",
-            'address'     => "required|max:191",
-            'neighborhood'     => "required|max:191",
-            'zipecode'     => "required|max:191",
+            'name'      => "required|max:191|unique:pastries,name,{$id},id",
+            'price'       => "required|regex:/^\d*(\.\d{2})?$/",
+            'photo'     => "required|max:191",
         ];
     }
 }

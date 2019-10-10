@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ClientRequest;
-use App\Repositories\Interfaces\ClientInterfaceRepository;
+use App\Http\Requests\PastryRequest;
+use App\Repositories\Interfaces\PastryInterfaceRepository;
 
-class ClientController extends Controller
+class PastryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class ClientController extends Controller
      * @return \Illuminate\Http\Response
      */
     protected $repository;
-    public function __construct( ClientInterfaceRepository $repository)
+    public function __construct(PastryInterfaceRepository $repository)
     {
         $this->repository = $repository;
     }
@@ -26,13 +26,14 @@ class ClientController extends Controller
         return response()->json($registro);
     }
 
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ClientRequest $request)
+    public function store(PastryRequest $request)
     {
         //
         $registro = $this->repository->store($request->all());
@@ -50,7 +51,7 @@ class ClientController extends Controller
         //
         if(!$this->repository->findById($id))
         {
-            return response()->json(['error'=>'client_not_found'],400);
+            return response()->json(['error'=>'pastry_not_found'],400);
         }
         return $this->repository->findById($id);
     }
@@ -63,12 +64,12 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ClientRequest $request, $id)
+    public function update(PastryRequest $request, $id)
     {
         //
         if(!$this->repository->findById($id))
         {
-            return response()->json(['error'=>'client_not_found'],400);
+            return response()->json(['error'=>'pastry_not_found'],400);
         }
 
         if(!$update = $this->repository->update($id,$request->all())){
