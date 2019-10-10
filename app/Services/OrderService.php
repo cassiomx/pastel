@@ -18,7 +18,7 @@ class OrderService extends BaseService
         {
             return response()->json(['error'=>'data_not_found'],400);
         }
-        return $this->repository->relationships('itens')->findById($id);
+        return $this->repository->relationships(['itens','client'])->findById($id);
     }
 
 }

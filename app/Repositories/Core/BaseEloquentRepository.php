@@ -5,7 +5,7 @@ use App\Repositories\Interfaces\InterfaceRepository;
 
 class BaseEloquentRepository implements InterfaceRepository
 {
-    protected $entity; // objeto referência a camada de Model 
+    protected $entity; // objeto referência a camada de Model
     public function __construct() {
         $this->entity = $this->resolveEntity();
     }
@@ -54,7 +54,7 @@ class BaseEloquentRepository implements InterfaceRepository
         $this->entity = $this->entity->orderBy($column,$order);
         return $this;
     }
-    public function relationships(...$relationships)
+    public function relationships(array $relationships)
     {
         $this->entity = $this->entity->with($relationships);
         return $this;
