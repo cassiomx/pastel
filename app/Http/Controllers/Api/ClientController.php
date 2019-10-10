@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClientRequest;
 use App\Repositories\Interfaces\ClientInterfaceRepository;
+use App\Services\ClientService;
 
 class ClientController extends Controller
 {
@@ -15,14 +16,16 @@ class ClientController extends Controller
      * @return \Illuminate\Http\Response
      */
     protected $repository;
-    public function __construct( ClientInterfaceRepository $repository)
+    protected $service;
+    public function __construct( ClientInterfaceRepository $repository,ClientService $service)
     {
         $this->repository = $repository;
+        $this->service = $service;
     }
     public function index()
     {
         //
-        $registro = $this->repository->getAll();
+        $registro = $this->service->index();
         return response()->json($registro);
     }
 
