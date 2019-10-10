@@ -16,10 +16,9 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('client_id');
-            $table->bigInteger('pastry_id');
             $table->index('client_id','client_idx'); //*cria index no campo  client_id*//
-            $table->index('pastry_id','pastry_idx'); //*cria index no campo  pastry_id*//
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

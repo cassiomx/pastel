@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\OrderRequest;
+use App\Services\OrderService;
 
 class OrderController extends Controller
 {
@@ -12,9 +14,15 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    protected $service;
+    public function __construct( OrderService $service)
+    {
+        $this->service = $service;
+    }
     public function index()
     {
         //
+        return $this->service->index();
     }
 
     /**
@@ -23,9 +31,9 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OrderRequest $request)
     {
-        //
+        return $this->service->store($request);
     }
 
     /**
@@ -37,6 +45,8 @@ class OrderController extends Controller
     public function show($id)
     {
         //
+        // dd($id);
+        return $this->service->show($id);
     }
 
 
@@ -47,9 +57,10 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(OrderRequest $request, $id)
     {
         //
+        return $this->service->update($request,$id);
     }
 
     /**

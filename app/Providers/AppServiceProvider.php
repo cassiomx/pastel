@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use App\Repositories\Core\Eloquent\ClientEloquentRepository;
 use App\Repositories\Core\Eloquent\PastryEloquentRepository;
+use App\Repositories\Core\Eloquent\OrderEloquentRepository;
 use App\Repositories\Interfaces\ClientInterfaceRepository;
 use App\Repositories\Interfaces\PastryInterfaceRepository;
+use App\Repositories\Interfaces\OrderInterfaceRepository;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 class AppServiceProvider extends ServiceProvider
@@ -26,6 +28,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             PastryInterfaceRepository::class,
             PastryEloquentRepository::class
+        );
+        $this->app->bind(
+            OrderInterfaceRepository::class,
+            OrderEloquentRepository::class
         );
     }
 

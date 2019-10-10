@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 */
 Route::resource('clients','Api\ClientController')->except(['create', 'edit']);
 Route::resource('pastries','Api\PastryController')->except(['create', 'edit']);
+Route::resource('orders','Api\OrderController')->except(['create', 'edit']);
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
