@@ -19,7 +19,6 @@ class CreateOrdersTable extends Migration
             $table->bigInteger('pastry_id');
             $table->index('client_id','client_idx'); //*cria index no campo  client_id*//
             $table->index('pastry_id','pastry_idx'); //*cria index no campo  pastry_id*//
-            $table->primary('id');
             $table->timestamps();
         });
     }

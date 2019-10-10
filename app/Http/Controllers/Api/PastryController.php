@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PastryRequest;
-use App\Repositories\Interfaces\PastryInterfaceRepository;
+use App\Services\PastryService;
 
 class PastryController extends Controller
 {
@@ -14,16 +14,15 @@ class PastryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    protected $repository;
-    public function __construct(PastryInterfaceRepository $repository)
+    protected $service;
+    public function __construct(PastryService $service)
     {
-        $this->repository = $repository;
+        $this->service = $service;
     }
     public function index()
     {
         //
-        $registro = $this->repository->getAll();
-        return response()->json($registro);
+        return $this->service->index();
     }
 
 
@@ -36,8 +35,7 @@ class PastryController extends Controller
     public function store(PastryRequest $request)
     {
         //
-        $registro = $this->repository->store($request->all());
-        return response()->json($registro);
+        return $this->service->store($request);
     }
 
     /**
@@ -49,11 +47,7 @@ class PastryController extends Controller
     public function show($id)
     {
         //
-        if(!$this->repository->findById($id))
-        {
-            return response()->json(['error'=>'pastry_not_found'],400);
-        }
-        return $this->repository->findById($id);
+        return $this->service->show($id);
     }
 
 
@@ -67,15 +61,7 @@ class PastryController extends Controller
     public function update(PastryRequest $request, $id)
     {
         //
-        if(!$this->repository->findById($id))
-        {
-            return response()->json(['error'=>'pastry_not_found'],400);
-        }
-
-        if(!$update = $this->repository->update($id,$request->all())){
-            return response()->json(['error'=>'Erro ao Atualizar Cliente'],500);
-        }
-        return response()->json(['result'=>$update]);
+        return $this->service->update($request,$id);
     }
 
     /**
@@ -87,13 +73,6 @@ class PastryController extends Controller
     public function destroy($id)
     {
         //
-        if(!$this->repository->findById($id))
-        {
-            return response()->json(['error'=>'client_not_found'],400);
-        }
-        if(!$delete = $this->repository->delete($id)){
-            return response()->json(['error'=>'error_delete_client'],500);
-        }
-        return response()->json(['result'=>$delete]);
+        return $this->service->delete($id);
     }
 }

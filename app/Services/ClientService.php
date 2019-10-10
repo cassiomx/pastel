@@ -10,7 +10,6 @@ class ClientService extends BaseService
     public function __construct( ClientInterfaceRepository $repository)
     {
         $this->repository = $repository;
-        parent::__construct( $repository );
     }
 
 
