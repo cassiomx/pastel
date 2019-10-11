@@ -20,8 +20,14 @@ php artisan serve
 # EndPoints #
 ## CLIENTS ##
 ### Client/Index - GET ###
-* **Url**: http://localhost:8000/api/clients
-* **Params:** - **page** = int: número da página a ser exibido
+* **Url**  : http://localhost:8000/api/clients
+* **Params :** - **page** = int: número da página a ser exibido / **per_page** = int: número de registros por página.
+* **Retorno:** array: lista de clientes dentro dos filtros realizados.
+
+### Client/Create - POST ##
+* **Url**  : http://localhost:8000/api/clients
+* **Envio :** - **Json** = {"name":"Teste","email":"teste@gmail.com","phone":"111111111","dateofbirth":"1986-05-15","address":"Avenida Paulista","neighborhood":"Centro","zipecode":"01010001"}.
+* **Retorno:** mensagem 200 - json {"result": "success_store"}.
 
 
 
