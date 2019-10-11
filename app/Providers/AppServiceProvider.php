@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Order;
+use App\Observers\OrderObserver;
 use App\Repositories\Core\Eloquent\ClientEloquentRepository;
 use App\Repositories\Core\Eloquent\PastryEloquentRepository;
 use App\Repositories\Core\Eloquent\OrderEloquentRepository;
@@ -44,5 +46,6 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         Schema::defaultStringLength(191);
+        Order::observe(OrderObserver::class);
     }
 }

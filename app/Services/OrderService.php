@@ -13,12 +13,12 @@ class OrderService extends BaseService
 
     public function show($id)
     {
-        // dd('entrei no show');
         if(!$this->repository->findById($id))
         {
             return response()->json(['error'=>'data_not_found'],400);
         }
         return $this->repository->relationships(['itens','client'])->findById($id);
     }
+
 
 }

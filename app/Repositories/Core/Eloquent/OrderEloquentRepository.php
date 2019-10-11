@@ -22,7 +22,7 @@ class OrderEloquentRepository extends BaseEloquentRepository implements OrderInt
 
     public function update($id,$request)
     {
-        $register = $this->entity->update($id,$request);
+        $register = $this->entity->find( $id );
         $register->itens()->sync([]);
         $register->itens()->sync( $request['pastry_id'] );
         return $register;        

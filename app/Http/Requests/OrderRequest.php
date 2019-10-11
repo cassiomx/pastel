@@ -25,7 +25,7 @@ class OrderRequest extends FormRequest
     {
         return [
             'client_id' =>'required|exists:clients,id',
-            'pastry_id' =>'required|array|min:1|exists:pastries,id'
+            'pastry_id' =>'required|array|min:1'
         ];
     }
 }
