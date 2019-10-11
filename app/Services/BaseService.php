@@ -24,7 +24,7 @@ class BaseService
         if(!$store = $this->repository->store($request->all())){
             return response()->json(['error'=>'error_store_data'],500);
         }
-        return response()->json($store);
+        return response()->json(['result'=>'success_store']);
     }
 
     public function show($id)
