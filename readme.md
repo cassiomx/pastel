@@ -14,9 +14,10 @@ Finalizando as configurações do arquivo **.env**, acesse a pasta via terminal 
 
 ```
 composer update
-php artisan migrate --seed
+php artisan migrate --seed // irá criar as tabelas e irá cadastrar serie de pasteis
 php artisan serve
 ```
+
 
 
 
