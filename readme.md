@@ -97,7 +97,7 @@ Logo abaixo, temos os endpoints utilizado no projeto. Porém, há um arquivo **A
 * **{id}:** : int - id do Pedido;
 * **Retorno:** mensagem 200 - json {"result": "success_delete"}
 
-# ENVIO DE E-MAIL#
+# ENVIO DE E-MAIL #
 Ao Cadastrar um pedido, o Sistema Envia E-mail para o Cliente.
 Conforme mencionado anteriormente, as configurações para o envio de e-mail estão pré-definidas no arquivo **.env** e estão utiiando a ferramenta **Mailtrap**.
 
