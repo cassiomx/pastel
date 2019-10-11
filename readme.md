@@ -109,13 +109,13 @@ MAIL_USERNAME=8a6f18a36d13d4
 MAIL_PASSWORD=44f451e695a744
 MAIL_ENCRYPTION=null
 ```
-### Processando Fila de Envio de E-mail ###
+### Processando Fila de Envio de E-mails ###
 
 ```
 php artisan queue:work
 ```
 
-### Visualizando os E-mail ###
+### Visualizando os E-mails ###
 Se não houve alteração no arquivo **.env**, é possivel visualizar os e-mails enviados para o sistema através dos dados abaixo.
 * Acessar o link https://mailtrap.io/
 * Fazer o login com a conta GitHub.
