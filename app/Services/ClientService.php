@@ -20,7 +20,6 @@ class ClientService extends BaseService
         $page = $request['page'];
         $registro = $this->repository->relationships(['orders'])->paginate($qtd);
 
-        // dd($registro);
         Paginator::currentPageResolver(function () use ($page){
             return $page;
         });
