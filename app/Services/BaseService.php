@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Services;
+use Illuminate\Http\Request;
 
 class BaseService
 {
@@ -12,7 +13,7 @@ class BaseService
     }
 
 
-    public function index()
+    public function index($request)
     {
         $registro = $this->repository->getAll();
         return response()->json($registro);

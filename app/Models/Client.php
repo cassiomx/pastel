@@ -10,4 +10,9 @@ class Client extends Model
     //
     use SoftDeletes;
     protected $fillable = ['name','email','phone','dateofbirth','address','complement','neighborhood','zipecode'];
+
+
+    public function orders(){
+        return $this->hasMany('App\Models\Order');
+    }
 }

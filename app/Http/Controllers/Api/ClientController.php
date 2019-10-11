@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClientRequest;
 use App\Services\ClientService;
+use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
@@ -19,10 +19,10 @@ class ClientController extends Controller
     {
         $this->service = $service;
     }
-    public function index()
+    public function index(Request $request)
     {
         //
-        return $this->service->index();
+        return $this->service->index($request);
     }
 
     /**

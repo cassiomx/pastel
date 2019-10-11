@@ -3,6 +3,8 @@
 namespace App\Services;
 use App\Services\BaseService;
 use App\Repositories\Interfaces\OrderInterfaceRepository;
+use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 class OrderService extends BaseService
 {
     protected $repository;
@@ -10,7 +12,19 @@ class OrderService extends BaseService
     {
         $this->repository = $repository;
     }
+    public function index($request){
 
+        $qtd = $request['per_page'];
+        $page = $request['page'];
+        $registro = $this->repository->relationships(['itens'])->paginate($qtd);
+
+        // dd($registro);
+        Paginator::currentPageResolver(function () use ($page){
+            return $page;
+        });
+        $registro = $registro->appends(Request::capture()->except('page'));
+        return response()->json($registro);
+    }
     public function show($id)
     {
         if(!$this->repository->findById($id))

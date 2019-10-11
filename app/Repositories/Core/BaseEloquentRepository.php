@@ -11,7 +11,7 @@ class BaseEloquentRepository implements InterfaceRepository
     }
     public function getAll()
     {
-        return $this->entity->all();
+        return $this->entity->get();
     }
     public function findById($id)
     {
