@@ -18,6 +18,9 @@ php artisan migrate --seed // irá criar as tabelas e irá cadastrar serie de pa
 php artisan serve
 ```
 # EndPoints #
+Logo abaixo, temos os endpoints utilizado no projeto. Porém, há um arquivo **Api_Pastelaria.postman_collectionJson** no diretório **public/file/** que pode ser importado no POSTMAN.
+
+
 ## CLIENTES ##
 ### Client/Index - GET ###
 * **Url**  : http://localhost:8000/api/clients
@@ -40,7 +43,7 @@ php artisan serve
 * **Retorno:** mensagem 200 - json {"result": "success_update"}.
 
 ### Client/Delete - DELETE ###
-* ***Url:**  : http://localhost:8000/api/clients/{id}
+* **Url:**  : http://localhost:8000/api/clients/{id}
 * **{id}:** : int - id do Cliente;
 * **Retorno:** mensagem 200 - json {"result": "success_delete"}
 
@@ -94,7 +97,30 @@ php artisan serve
 * **{id}:** : int - id do Pedido;
 * **Retorno:** mensagem 200 - json {"result": "success_delete"}
 
+# ENVIO DE E-MAIL#
+Ao Cadastrar um pedido, o Sistema Envia E-mail para o Cliente.
+Conforme mencionado anteriormente, as configurações para o envio de e-mail estão pré-definidas no arquivo **.env** e estão utiiando a ferramenta **Mailtrap**.
 
+```
+MAIL_DRIVER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=8a6f18a36d13d4
+MAIL_PASSWORD=44f451e695a744
+MAIL_ENCRYPTION=null
+```
+### Processando Fila de Envio de E-mail ###
+
+```
+php artisan queue:work
+```
+
+### Visualizando os E-mail ###
+Se não houve alteração no arquivo **.env**, é possivel visualizar os e-mails enviados para o sistema através dos dados abaixo.
+* Acessar o link https://mailtrap.io/
+* Fazer o login com a conta GitHub.
+* Usuario: cassiodnsantos
+* Senha: aos cuidados de Fernando Dias
 
 
 
