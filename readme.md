@@ -17,6 +17,12 @@ composer update
 php artisan migrate --seed // irá criar as tabelas e irá cadastrar serie de pasteis
 php artisan serve
 ```
+# EndPoints #
+## CLIENTS ##
+### Client/Index - GET ###
+* **Url**: http://localhost:8000/api/clients
+* **Params:** - **page** = int: número da página a ser exibido
+
 
 
 
